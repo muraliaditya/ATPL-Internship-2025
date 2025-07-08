@@ -1,4 +1,4 @@
-
+package 
 public class eveoddfrequency {
     public static void main(String args[]){
         int arr[]={714,8,42,67,97};

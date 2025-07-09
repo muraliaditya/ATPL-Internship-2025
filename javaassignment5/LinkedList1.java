@@ -4,19 +4,19 @@ import java.util.Scanner;
 public class LinkedList1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        LinkedList<Integer> li = new LinkedList<Integer>();
-        li.add(10);
-        li.add(20);
-        li.add(30);
-        li.add(40);
-        li.add(50);
+        LinkedList<Integer> list1 = new LinkedList<Integer>();
+        list1.add(10);
+        list1.add(20);
+        list1.add(30);
+        list1.add(40);
+        list1.add(50);
 
-        li.add(0,5);
-        li.add(li.size(),60);
+        list1.add(0,5);
+        list1.add(list1.size(),60);
 
-        li.remove(2);
+        list1.remove(2);
 
-        System.out.println(li);
+        System.out.println(list1);
 
     }
 }

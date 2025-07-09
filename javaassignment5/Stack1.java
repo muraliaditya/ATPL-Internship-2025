@@ -1,17 +1,17 @@
 import java.util.Stack;
 public class Stack1 {
     public static void main(String args[]){
-        Stack<Integer> s=new Stack<>();
+        Stack<Integer> stack1=new Stack<>();
 
-        s.push(5);
-        s.push(10);
-        s.push(15);
-        s.push(20);
-        s.push(25);
+        stack1.push(5);
+        stack1.push(10);
+        stack1.push(15);
+        stack1.push(20);
+        stack1.push(25);
 
-        s.pop();
-        s.pop();
+        stack1.pop();
+        stack1.pop();
 
-        System.out.println(s);
+        System.out.println(stack1);
     }
 }

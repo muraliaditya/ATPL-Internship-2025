@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class ArrayList1 {
     public static void main(String args[]){
-        ArrayList<String> ar=new ArrayList<>();
-        ar.add("Ram");
-        ar.add("Jay");
-        ar.add("Raj");
-        ar.add("Roy");
-        ar.add("Dev");
+        ArrayList<String> array1=new ArrayList<>();
+        array1.add("Ram");
+        array1.add("Jay");
+        array1.add("Raj");
+        array1.add("Roy");
+        array1.add("Dev");
 
-        for(int i=0;i<ar.size();i++){
-            String names=ar.get(i);
+        for(int i=0;i<array1.size();i++){
+            String names=array1.get(i);
              System.out.println(names);
          }
 
@@ -19,10 +19,10 @@ public class ArrayList1 {
         // }
         System.out.println("Using Enhanced for loop and removing 3rd element");
 
-        ar.remove(2);
+        array1.remove(2);
         
-        for(String i:ar){
-             System.out.println(i);
+        for(String name:array1){
+             System.out.println(name);
         }
 
     }

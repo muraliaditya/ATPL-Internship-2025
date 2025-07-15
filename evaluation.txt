@@ -1,0 +1,108 @@
+//bankaccount
+
+package javaass;
+import java.util.*;
+interface payment{
+	public void pay(double amt);
+}
+
+public class Ecommerce implements payment{
+	public static void main(String args[]) {
+		Ecommerce e=new Ecommerce();
+		e.cardpayment(5777);
+		e.upipayment(300);
+		e.cashondelivery(400);
+	}
+	double balance=5660;
+	@Override
+	public void pay(double amt) {
+		// TODO Auto-generated method stub
+		balance=balance-amt;
+		System.out.println(balance);
+	}
+	public void upipayment(double amt) {
+		balance=balance-amt;
+		System.out.println(balance);
+	}
+	public void  cardpayment(double amt) {
+		balance=balance-amt;
+		System.out.println(balance);
+	}
+	public void cashondelivery(double codamt) {
+		balance=balance-codamt;
+		System.out.println(balance);
+	}
+	
+}
+
+
+//E-commerce
+package javaass;
+import java.util.*;
+interface payment{
+	public void pay(double amt);
+}
+
+public class Ecommerce implements payment{
+	public static void main(String args[]) {
+		Ecommerce e=new Ecommerce();
+		e.cardpayment(5777);
+		e.upipayment(300);
+		e.cashondelivery(400);
+	}
+	double balance=5660;
+	@Override
+	public void pay(double amt) {
+		// TODO Auto-generated method stub
+		balance=balance-amt;
+		System.out.println(balance);
+	}
+	public void upipayment(double amt) {
+		balance=balance-amt;
+		System.out.println(balance);
+	}
+	public void  cardpayment(double amt) {
+		balance=balance-amt;
+		System.out.println(balance);
+	}
+	public void cashondelivery(double codamt) {
+		balance=balance-codamt;
+		System.out.println(balance);
+	}
+	
+}
+
+//String1
+
+package javaass;
+
+public class String1 {
+	public static void main(String args[]) {
+		String s1="hey";
+		String s2="";
+		char ch;
+		
+		for(int i=0;i<s1.length();i++) {
+			ch=s1.charAt(i);
+			s2=ch+s2;
+		}
+		System.out.println(s2);
+	}
+	
+}
+
+//Student
+
+package javaass;
+import java.util.*;
+public class Student {
+    public static void main(String args[]){
+        ArrayList<String> st=new ArrayList<>();
+        st.add("RAM");
+        st.add("JAY");
+        st.add("DEV");
+        st.add("RAJ");
+        System.out.println(st);
+        System.out.println(Collections.sort(st));
+    }
+}

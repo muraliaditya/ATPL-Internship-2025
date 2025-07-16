@@ -1,0 +1,5 @@
+Student[name=dg, age=5, dept=sd, gpa=54.00]
+Student[name=sd, age=54, dept=sdg, gpa=57.00]
+Student[name=gw, age=78, dept=weg, gpa=8.00]
+Student[name=esz, age=48, dept=zaet, gpa=87.00]
+Student[name=aznrn, age=51, dept=bsxzf, gpa=5.00]

@@ -1,1 +1,163 @@
+//Write a program to calculate a person's age from their date of birth using Period.
 
+package java8featuresassignment;
+import java.time.LocalDate;
+import java.time.Period;
+@FunctionalInterface
+interface AgeCalculator {
+    Period calculate(LocalDate dob, LocalDate currentDate);
+}
+public class AgeFromDOB {
+    public static void main(String[] args) {
+        LocalDate dob = LocalDate.of(1995, 5, 15);
+        LocalDate today = LocalDate.now();
+        AgeCalculator ageCalc = (birthDate, current) -> Period.between(birthDate, current);
+        Period age = ageCalc.calculate(dob, today);
+        System.out.println("Age is: " + age.getYears() + " years " +
+                           age.getMonths() + " months " +
+                           age.getDays() + " days");
+    }
+}
+
+// Add 10 days and subtract 2 months from the current date
+
+package java8featuresassignment;
+import java.time.LocalDate;
+@FunctionalInterface
+interface DateManipulator {
+    LocalDate change(LocalDate date);
+}
+public class DateAdjust {
+    public static void main(String[] args) {
+        LocalDate today = LocalDate.of(2025, 7, 23);
+        DateManipulator addDays = d -> d.plusDays(10);
+        DateManipulator subtractMonths = d -> d.minusMonths(2);
+        LocalDate after10Days = addDays.change(today);
+        LocalDate before2Months = subtractMonths.change(today);
+        System.out.println("Original Date: " + today);
+        System.out.println("After adding 10 days: " + after10Days);
+        System.out.println("After subtracting 2 months: " + before2Months);
+    }
+}
+
+//Print the day of the week for a given date.
+
+package java8featuresassignment;
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+@FunctionalInterface
+interface DayOfWeekFinder {
+    DayOfWeek getDay(LocalDate date);
+}
+public class DayOfWeekPrinter {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2025, 12, 25);
+        DayOfWeekFinder finder = d -> d.getDayOfWeek();
+        DayOfWeek day = finder.getDay(date);
+        System.out.println("Day of the week: " + day);
+    }
+}
+
+//Convert a traditional anonymous class for Comparator<Integer> into a lambda expression
+for sorting numbers in descending order.
+
+package java8featuresassignment;
+import java.util.*;
+
+public class DescendingSort {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 9);
+        Comparator<Integer> descending = (a, b) -> b - a;
+        Collections.sort(numbers, descending);
+        System.out.print("Sorted in descending order: ");
+        for (Integer num : numbers) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+//Given a list of integers, use a lambda expression to print all even numbers.
+
+package java8featuresassignment;
+import java.util.*;
+@FunctionalInterface
+interface EvenChecker {
+    boolean isEven(int n);
+}
+public class EvenNumbers {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+        EvenChecker checker = n -> n % 2 == 0;
+        for (Integer num : numbers) {
+            if (checker.isEven(num)) {
+                System.out.print(num + " ");
+            }
+        }
+    }
+}
+
+//Given a list of names, use a lambda to filter and print names starting with 'A'.
+
+package java8featuresassignment;
+import java.util.*;
+@FunctionalInterface
+interface NameFilter {
+    boolean startsWithA(String name);
+}
+public class FilterNames {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Alice", "Bob", "Andrew", "Tom", "Angela", "Steve");
+        NameFilter filter = name -> name.startsWith("A");
+        System.out.print("Names starting with 'A':   ");
+        names.forEach(name -> {
+            if (filter.startsWithA(name)) {
+                System.out.print(name + " "+",");
+            }
+        });
+    }
+}
+
+// Sort a list of strings in alphabetical and reverse order using a lambda with Collections.sort().
+
+package java8featuresassignment;
+import java.util.*;
+
+@FunctionalInterface
+interface Printer<T> {
+    void print(List<T> list);
+}
+
+public class SortStrings {
+    public static void main(String[] args) {
+        List<String> fruits = new ArrayList<>(Arrays.asList("Banana", "Apple", "Mango", "Cherry"));
+        Printer<String> printList = list -> {
+            for (String s : list) {
+                System.out.print(s + " ");
+            }
+            System.out.println();
+        };
+        Collections.sort(fruits, (s1, s2) -> s1.compareTo(s2));
+        System.out.print("Alphabetical order: ");
+        printList.print(fruits);
+        Collections.sort(fruits, (s1, s2) -> s2.compareTo(s1));
+        System.out.print("Reverse order: ");
+        printList.print(fruits);
+    }
+}
+
+//Use a lambda expression to square each element in a list of integers and print the results.
+
+package java8featuresassignment;
+import java.util.*;
+@FunctionalInterface
+interface Square {
+    int apply(int x);
+}
+public class SquareList {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Square square = x -> x * x;
+        System.out.print("Squared numbers: ");
+        numbers.forEach(n -> System.out.print(square.apply(n) + " "));
+    }
+}

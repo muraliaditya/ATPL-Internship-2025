@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Constructor Injection for Faculty -->
+    <bean id="faculty" class="com.aaslin.spring.multipledi.Faculty">
+        <constructor-arg value="Dr. Smith"/>
+        <constructor-arg value="Computer Science"/>
+    </bean>
+
+    <!-- Setter Injection for Library -->
+    <bean id="library" class="com.aaslin.spring.multipledi.Library">
+        <property name="libraryName" value="Central Library"/>
+    </bean>
+
+    <!-- University bean with mixed injection -->
+    <bean id="university" class="com.aaslin.spring.multipledi.University">
+        <constructor-arg ref="faculty"/>
+        <property name="library" ref="library"/>
+    </bean>
+</beans>

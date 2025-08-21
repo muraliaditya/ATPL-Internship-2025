@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Edit Complaint</title></head>
+<body>
+<h2>Edit Complaint</h2>
+<form th:action="@{|/complaints/update/${complaint.id}|}" th:object="${complaint}" method="post">
+  Description: <input th:field="*{description}" required/><br/><br/>
+  Category: <input th:field="*{category}"/><br/><br/>
+  Priority:
+  <select th:field="*{priority}">
+    <option value="LOW">Low</option>
+    <option value="MEDIUM">Medium</option>
+    <option value="HIGH">High</option>
+  </select><br/><br/>
+  Status:
+  <select th:field="*{status}">
+    <option value="OPEN">Open</option>
+    <option value="IN_PROGRESS">In Progress</option>
+    <option value="RESOLVED">Resolved</option>
+  </select><br/><br/>
+  <button type="submit">Update</button>
+  <a th:href="@{/complaints}">Back</a>
+</form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Register Complaint</title></head>
+<body>
+<h2>Register Complaint</h2>
+
+<form th:action="@{/complaints}" th:object="${complaint}" method="post">
+  Description: <input th:field="*{description}" required/><br/><br/>
+  Category: <input th:field="*{category}"/><br/><br/>
+
+  Priority:
+  <select th:field="*{priority}">
+    <option value="LOW">Low</option>
+    <option value="MEDIUM">Medium</option>
+    <option value="HIGH">High</option>
+  </select><br/><br/>
+
+  <!-- status will default to OPEN -->
+  <button type="submit">Submit</button>
+  <a th:href="@{/complaints}">Cancel</a>
+</form>
+</body>
+</html>

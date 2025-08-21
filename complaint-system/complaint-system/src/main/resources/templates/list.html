@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Complaints</title></head>
+<body>
+<h2>Complaint Dashboard</h2>
+
+<form method="get" th:action="@{/complaints}">
+  <label>Status Filter:</label>
+  <select name="status">
+    <option th:selected="${selectedStatus==null}" value="">--All--</option>
+    <option th:selected="${selectedStatus?.name()=='OPEN'}" value="OPEN">Open</option>
+    <option th:selected="${selectedStatus?.name()=='IN_PROGRESS'}" value="IN_PROGRESS">In Progress</option>
+    <option th:selected="${selectedStatus?.name()=='RESOLVED'}" value="RESOLVED">Resolved</option>
+  </select>
+  <button type="submit">Filter</button>
+</form>
+
+<p style="color:green" th:if="${msg}" th:text="${msg}"></p>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+<tr>
+  <th>S.No</th>
+  <th>Complaint ID</th>
+  <th>Description</th>
+  <th>Category</th>
+  <th>Priority</th>
+  <th>Status</th>
+  <th>Created</th>
+  <th>Action</th>
+</tr>
+</thead>
+
+ <tbody>
+<tr th:each="c, stat : ${complaints}">
+    <td th:text="${stat.index + 1}"></td> <!-- Serial Number -->
+    <td th:text="${c.formattedId}"></td> <!-- ATCTXXXX ID -->
+    <td th:text="${c.description}"></td>
+    <td th:text="${c.category}"></td>
+    <td th:text="${c.priority}"></td>
+    <td th:text="${c.status}"></td>
+    <td th:text="${#temporals.format(c.createdAt,'dd-MMM-yy HH:mm')}"></td>
+    <td>
+      <a th:href="@{|/complaints/edit/${c.id}|}">Edit</a> |
+      <a th:href="@{|/complaints/delete/${c.id}|}" 
+         onclick="return confirm('Delete this complaint?')">Delete</a>
+    </td>
+</tr>
+</tbody>
+
+</table>
+
+<p>
+  <a th:href="@{/complaints/new}">Register New Complaint</a> |
+  <a th:href="@{/complaints/delete}">Bulk Delete</a>
+</p>
+</body>
+</html>

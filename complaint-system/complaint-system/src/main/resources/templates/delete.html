@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Bulk Delete</title></head>
+<body>
+<h3>Delete RESOLVED complaints older than N days</h3>
+<form th:action="@{/complaints/delete-by-days}" method="post">
+  <input type="number" name="days" min="0" required />
+  <button type="submit">Delete</button>
+</form>
+<p><a th:href="@{/complaints}">Back</a></p>
+</body>
+</html>
+

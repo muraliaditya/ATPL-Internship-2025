@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+
+            gap: 30px;
+            grid-template-columns: auto auto auto;
+            background-color: gainsboro;
+            display: grid;
+            justify-content: space-around;
+            padding: 30px;
+        }
+
+        .a,
+        .b,
+        .c {
+            padding: 5px;
+        }
+
+        .a {
+            text-align: center;
+            font-size: xx-large;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            width: 300px;
+            justify-content: space-around;
+        }
+
+        .z:hover {
+            background-color: whitesmoke;
+
+        }
+
+        .b {
+            color: rgb(1, 51, 80);
+            font-size: x-large;
+            font-weight: lighter;
+        }
+
+        .c {
+            background-color: rgb(18, 105, 160);
+            text-align: center;
+            width: 100px;
+            color: aliceblue;
+
+        }
+
+        .c:hover {
+            background-color: rgb(8, 195, 252);
+        }
+
+        .z {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: white;
+            color: black;
+            height: 170px;
+            gap: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="z">
+            <div class="a">Basic</div>
+
+            <div class="b">$19/mo</div>
+
+            <div class="c">Choose Plan</div>
+
+        </div>
+        <div class="z">
+            <div class="a">Standrad</div>
+
+            <div class="b">$39/mo</div>
+
+            <div class="c">Choose Plan</div>
+
+        </div>
+        <div class="z">
+            <div class="a">Premium</div>
+
+            <div class="b">$79/mo</div>
+
+            <div class="c">Choose Plan</div>
+
+        </div>
+    </div>
+</body>
+
+</html>

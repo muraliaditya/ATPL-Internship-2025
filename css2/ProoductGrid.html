@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Grid</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px; 
+    }
+
+    .grid-item {
+      background: #babbbb;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .highlight {
+      grid-column: span 2;
+      background: #707172; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main">
+    <div class="grid-item highlight">Featured Item</div>
+    <div class="grid-item">Item 1</div>
+    <div class="grid-item">Item 2</div>
+    <div class="grid-item">Item 3</div>
+    <div class="grid-item">Item 4</div>
+    
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Quote Generator</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    blockquote { font-size: 20px; font-style: italic; margin: 20px auto; max-width: 500px; }
+    button { padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h2>Random Quote Generator</h2>
+  <blockquote id="quote"></blockquote>
+  <button onclick="newQuote()">New Quote</button>
+
+  <script>
+    const quotes = [
+      "The best way to get started is to quit talking and begin doing.",
+      "Don’t let yesterday take up too much of today.",
+      "It’s not whether you get knocked down, it’s whether you get up.",
+      "Failure will never overtake me if my determination to succeed is strong enough.",
+      "We may encounter many defeats but we must not be defeated."
+    ];
+    function newQuote() {
+      const random = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").textContent = quotes[random];
+    }
+    newQuote();
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Slider</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 24px; text-align: center; }
+    .slider { position: relative; width: 480px; height: 300px; margin: 0 auto; overflow: hidden; border-radius: 12px; }
+    .slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
+    .slider img.active { opacity: 1; }
+    .controls { margin-top: 12px; display: flex; gap: 10px; justify-content: center; }
+    button { padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h2>Image Slider</h2>
+
+  <div class="slider" id="slider" tabindex="0" aria-label="Image slider">
+    <img src="https://picsum.photos/id/1015/800/500" alt="Slide 1" class="active">
+    <img src="https://picsum.photos/id/1016/800/500" alt="Slide 2">
+    <img src="https://picsum.photos/id/1018/800/500" alt="Slide 3">
+    <img src="https://picsum.photos/id/1020/800/500" alt="Slide 4">
+  </div>
+
+  <div class="controls">
+    <button id="prev" type="button">⬅ Prev</button>
+    <button id="next" type="button">Next ➡</button>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const slides = Array.from(slider.querySelectorAll('img'));
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+
+    let index = 0;
+    let timerId = null;
+
+    function show(i) {
+      slides[index].classList.remove('active');
+      index = (i + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+
+    function next() { show(index + 1); }
+    function prev() { show(index - 1); }
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // Keyboard: left/right
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    function startAuto() {
+      stopAuto();
+      timerId = setInterval(next, 3000);
+    }
+    function stopAuto() {
+      if (timerId !== null) { clearInterval(timerId); timerId = null; }
+    }
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+
+    // Start
+    startAuto();
+  </script>
+</body>
+</html>

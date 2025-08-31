@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Form Validation</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 24px; max-width: 520px; }
+    .field { margin-bottom: 14px; }
+    label { display: block; margin-bottom: 6px; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font: inherit; }
+    input.error { border-color: #b00020; background: #fff5f5; }
+    .error-text { color: #b00020; font-size: 13px; margin-top: 6px; min-height: 16px; }
+    .success { color: #0a7a28; margin-top: 12px; }
+    button { padding: 10px 12px; }
+  </style>
+</head>
+<body>
+  <h2>Registration</h2>
+
+  <form id="regForm" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" type="text" />
+      <div class="error-text" id="nameErr"></div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" />
+      <div class="error-text" id="emailErr"></div>
+    </div>
+
+    <div class="field">
+      <label for="password">Password (min 6 chars)</label>
+      <input id="password" type="password" />
+      <div class="error-text" id="passErr"></div>
+    </div>
+
+    <div class="field">
+      <label for="cpassword">Confirm Password</label>
+      <input id="cpassword" type="password" />
+      <div class="error-text" id="cpassErr"></div>
+    </div>
+
+    <button type="submit">Register</button>
+    <div id="ok" class="success"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById('regForm');
+    const fields = {
+      name: document.getElementById('name'),
+      email: document.getElementById('email'),
+      password: document.getElementById('password'),
+      cpassword: document.getElementById('cpassword'),
+    };
+    const errors = {
+      name: document.getElementById('nameErr'),
+      email: document.getElementById('emailErr'),
+      password: document.getElementById('passErr'),
+      cpassword: document.getElementById('cpassErr'),
+    };
+    const ok = document.getElementById('ok');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      ok.textContent = '';
+      clearErrors();
+
+      const name = fields.name.value.trim();
+      const email = fields.email.value.trim();
+      const pass = fields.password.value;
+      const cpass = fields.cpassword.value;
+
+      let valid = true;
+
+      if (!name) { setError('name', 'Name is required'); valid = false; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setError('email', 'Enter a valid email'); valid = false; }
+      if (pass.length < 6) { setError('password', 'Password must be at least 6 characters'); valid = false; }
+      if (pass !== cpass) { setError('cpassword', 'Passwords do not match'); valid = false; }
+
+      if (!valid) return;
+
+      ok.textContent = 'Registration successful ✅';
+      form.reset();
+    });
+
+    // Live validation on blur
+    Object.values(fields).forEach((input) => {
+      input.addEventListener('blur', () => {
+        // trigger a light re-check for that field only
+        switch (input.id) {
+          case 'name':
+            input.value.trim() ? clearOne('name') : setError('name', 'Name is required');
+            break;
+          case 'email':
+            /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value.trim()) ? clearOne('email') : setError('email', 'Enter a valid email');
+            break;
+          case 'password':
+            input.value.length >= 6 ? clearOne('password') : setError('password', 'Password must be at least 6 characters');
+            break;
+          case 'cpassword':
+            input.value === fields.password.value ? clearOne('cpassword') : setError('cpassword', 'Passwords do not match');
+            break;
+        }
+      });
+    });
+
+    function setError(fieldKey, msg) {
+      fields[fieldKey].classList.add('error');
+      errors[fieldKey].textContent = msg;
+    }
+    function clearErrors() {
+      Object.keys(fields).forEach(clearOne);
+    }
+    function clearOne(key) {
+      fields[key].classList.remove('error');
+      errors[key].textContent = '';
+    }
+  </script>
+</body>
+</html>
